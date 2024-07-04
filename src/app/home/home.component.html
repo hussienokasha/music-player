@@ -1,0 +1,50 @@
+<div class="container mt-5">
+  <div class="border border-primary-subtle border-4 rounded-4  p-5 bg-secondary">
+    <p *ngIf="musicArr.length > 0" class="text-bg-light p-3 rounded-pill">{{musicArr[musicId].musicName}}</p>
+    <div class="controls d-flex justify-content-evenly align-items-center">
+      <button mat-mini-fab (click)="prevMusic()">
+        <mat-icon class="text-danger">skip_previous</mat-icon>
+      </button>
+      <button mat-fab (click)="playPause()">
+        <mat-icon class="text-danger">{{isPlaying?'pause':'play_arrow'}}</mat-icon>
+        <!-- <mat-icon class="text-danger">pause</mat-icon> -->
+      </button>
+      <button mat-mini-fab (click)="nextMusic()">
+        <mat-icon class="text-danger">skip_next</mat-icon>
+      </button>
+    </div>
+    <div class="progress-area w-100 rounded-pill bg-secondary-subtle mt-3 position-relative  curser-pointer"
+      style="height: 5px;" (click)="progressArea($event)">
+      <div class="prgress-bar position-absolute h-100 bg-black" [style.width]="musicCurrentTime/musicDuration*100+'%'">
+      </div>
+    </div>
+    <div class="duration d-flex justify-content-between mt-2">
+      <div>{{musicCurrentTime |musicTime}}</div>
+      <div>{{musicDuration |musicTime}}</div>
+    </div>
+  </div>
+  <div class="addMusic mt-3 d-flex gap-4 justify-content-center align-items-start">
+
+    <button mat-fab color="warn">
+      <label for="music">
+        <mat-icon class="d-block w-100">add</mat-icon>
+        <input type="file" id="music" multiple hidden (change)="addToArr($event)" accept="audio/*">
+      </label>
+    </button>
+
+
+    <mat-accordion style="max-height: 700px; overflow: auto;">
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Music Playlist
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <p *ngFor="let music of musicArr ; let i = index" (click)="playMusic(music)" class="curser-pointer">
+          {{music.musicName}}
+          <mat-divider class="m-3" [class.bg-danger]="i == musicId"></mat-divider>
+        </p>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+.prgress-bar::after {
+  content: "";
+  width: 10px;
+  pointer-events:none;
+  height: 10px;
+  background-color: rgb(255, 94, 94);
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  right: -7px;
+  top: 50%;
+  transform: translateY(-50%);
+  position: absolute;
+  /* opacity: 0; */
+  transition: 0.4s;
+  -webkit-transition: 0.4s;
+  -moz-transition: 0.4s;
+  -ms-transition: 0.4s;
+  -o-transition: 0.4s;
+
+}
+.prgress-bar
+{
+  pointer-events: none;
+}
